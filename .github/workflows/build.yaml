@@ -277,6 +277,14 @@ jobs:
         git config --system --add safe.directory $GITHUB_WORKSPACE
         dpkg-buildpackage -b -nc
         mv ../switchfin_*.deb $GITHUB_WORKSPACE
+    - name: Archive Build Logs
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: logs-${{ matrix.tag }}-${{ matrix.arch }}
+        path: |
+          build-ffmpeg/ffbuild
+          build-*/meson-logs
     - name: Upload Assets
       uses: actions/upload-artifact@v4
       with:

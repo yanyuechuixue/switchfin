@@ -79,11 +79,11 @@ nv-codec-headers:
 	make -C $(TMPDIR)/nv-codec-headers-n13.0.19.0 PREFIX=$(PREFIX) install
 
 ffmpeg: libass libssh2 dav1d nv-codec-headers
-	wget -qO- https://ffmpeg.org/releases/ffmpeg-7.1.1.tar.xz | tar Jxf - -C $(TMPDIR)
-	patch -d $(TMPDIR)/ffmpeg-7.1.1 -Nbp1 -i $(CURDIR)/scripts/mingw64/ffmpeg/avio.patch
-	patch -d $(TMPDIR)/ffmpeg-7.1.1 -Nbp1 -i $(CURDIR)/scripts/patches/ffmpeg-v4l2-request.patch
+	wget -qO- https://ffmpeg.org/releases/ffmpeg-7.1.2.tar.xz | tar Jxf - -C $(TMPDIR)
+	patch -d $(TMPDIR)/ffmpeg-7.1.2 -Nbp1 -i $(CURDIR)/scripts/mingw64/ffmpeg/avio.patch
+	patch -d $(TMPDIR)/ffmpeg-7.1.2 -Nbp1 -i $(CURDIR)/scripts/patches/ffmpeg-v4l2-request.patch
 	mkdir -p build-ffmpeg && cd build-ffmpeg && \
-	$(TMPDIR)/ffmpeg-7.1.1/configure --prefix=$(PREFIX) --disable-shared --enable-static \
+	$(TMPDIR)/ffmpeg-7.1.2/configure --prefix=$(PREFIX) --disable-shared --enable-static \
 		--disable-programs --disable-debug --disable-doc --enable-pic --disable-avdevice \
 		--disable-muxers --disable-encoders --disable-autodetect --enable-openssl --enable-nonfree \
 		--enable-libass --enable-libdav1d --enable-libssh2 --enable-vaapi --enable-vdpau --enable-zlib
