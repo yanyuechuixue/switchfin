@@ -1,6 +1,6 @@
 # Changelog
 
-## [next] 
+## [next]
 
 ### Add
 
